@@ -1,0 +1,59 @@
+.icon {
+  width: 2.5em;
+  height: 2.5em;
+  vertical-align: -0.15em;
+  fill: white;
+  overflow: hidden;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-size: 12px;
+  color: white;
+  line-height: 1.2;
+  background-color: #ffffff;
+  position: relative;
+}
+main {
+  height: 100vh;
+  background: #DADADA;
+  color: black;
+}
+footer {
+  height: 10vh;
+  position: absolute;
+  bottom: 5vh;
+  left: 0;
+  width: 100%;
+  display: flex;
+}
+footer>div {
+  padding-left: 10px;
+  padding-right: 10px;
+  text-align: center;
+}
+footer .svg-wrapper{
+  height: 45px;
+  width: 45px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0,0,0,0.5)
+}
+footer .active {
+  background-color: black;
+}
+.btn-rank{
+  padding-left: 30px;
+}
+.pag-rank{
+  display: block;
+}
+.pag-USMovie,.pag-seach {
+  display: none;
+}
