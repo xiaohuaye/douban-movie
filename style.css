@@ -11,21 +11,24 @@
   padding: 0;
   box-sizing: border-box;
 }
+a {
+  text-decoration: none;
+  color: #3987D5;
+}
 body {
-  font-size: 12px;
-  color: white;
+  font-size: 14px;
+  color: black;
   line-height: 1.2;
   background-color: #ffffff;
   position: relative;
 }
 main {
-  height: 100vh;
-  background: #DADADA;
+  background: white;
   color: black;
 }
 footer {
   height: 10vh;
-  position: absolute;
+  position: fixed;
   bottom: 5vh;
   left: 0;
   width: 100%;
@@ -53,7 +56,48 @@ footer .active {
 }
 .pag-rank{
   display: block;
+  padding: 30px 0 0 10vw;
 }
 .pag-USMovie,.pag-seach {
   display: none;
+}
+.pag-rank>h1{
+  font-size: 26px;
+  color: #494949;
+  padding-bottom: 30px;
+}
+.introduce {
+  border-top: 1px dashed #DEE1E6;
+  width: 50vw;
+  display: flex;
+  align-items: flex-start;
+}
+.introduce img {
+  margin: 10px 10px ;
+}
+.introduce>.number-movie {
+  padding-top: 10px;
+}
+.extra>a,p{
+  padding-top: 10px;
+  display: block;
+}
+.extra {
+  display: inline-block;
+}
+.casts {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow:ellipsis;
+}
+@media(max-width:768px){
+  .casts {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow:ellipsis;
+    width: 30vh;
+  }
+}
+.evaluate {
+  color: red;
 }
