@@ -77,6 +77,7 @@ footer .active {
 }
 .introduce>.number-movie {
   padding-top: 10px;
+  width: 1em;
 }
 .extra>a,p{
   padding-top: 10px;

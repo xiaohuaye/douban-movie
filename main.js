@@ -5,12 +5,12 @@ $(".svg-wrapper").on("click", e => {
     .eq(index)
     .fadeIn();
 });
-
+var index = null;
 $.ajax({
   url: "https://api.douban.com/v2/movie/top250",
   type: "GET",
   data: {
-    start: 0,
+    start: index,
     count: 20
   },
   dataType: "jsonp"
@@ -18,6 +18,7 @@ $.ajax({
   function(ret) {
     console.log(ret);
     setData(ret);
+    index += 20;
   },
   function() {
     console.log("error");
@@ -59,22 +60,46 @@ function setData(data) {
       });
       return "演员：" + castArry.join("、");
     });
-    $node.find(".number-movie").text(function(){
-      return `${$('.introduce').length + 1}`
+    $node.find(".number-movie").text(function() {
+      return `${$(".introduce").length + 1}`;
     });
-    $node.find(".others").text(function(){
-      let genresArry = []
+    $node.find(".others").text(function() {
+      let genresArry = [];
       movie.genres.forEach(genres => {
-        genresArry.push(genres)
-      })
-       return movie.year + ' / ' + genresArry.join(" / ")
+        genresArry.push(genres);
+      });
+      return movie.year + " / " + genresArry.join(" / ");
     });
-    $node.find(".collect").text(movie.collect_count + '人收藏');
-    $node.find(".evaluate").text('评分 ' + movie.rating.average);
-
+    $node.find(".collect").text(movie.collect_count + "人收藏");
+    $node.find(".evaluate").text("评分 " + movie.rating.average);
 
     $("section")
       .eq(0)
       .append($node);
   });
 }
+$(window).scroll(function() {
+  let scrollTop = $(this).scrollTop();
+  let scrollHeight = $(document).height();
+  let windowHeight = $(this).height();
+  if (scrollTop + windowHeight > scrollHeight - 1) {
+    $.ajax({
+      url: "https://api.douban.com/v2/movie/top250",
+      type: "GET",
+      data: {
+        start: index,
+        count: 20
+      },
+      dataType: "jsonp"
+    }).then(
+      function(ret) {
+        console.log(ret);
+        setData(ret);
+        index += 20;
+      },
+      function() {
+        console.log("error");
+      }
+    );
+  }
+});
