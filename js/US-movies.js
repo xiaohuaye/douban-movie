@@ -1,12 +1,12 @@
 !function() {
-  let $view = $(".pag-rank");
+  let $view = $(".pag-USMovie");
   let model = {
-    get: function(index) {
+    get: function() {
       return $.ajax({
-        url: "https://api.douban.com/v2/movie/top250",
+        url: "https://api.douban.com/v2/movie/us_box",
         type: "GET",
         data: {
-          start: index,
+          start: this.index,
           count: 20
         },
         dataType: "jsonp"
@@ -24,7 +24,6 @@
       this.loading = false;
       this.index = null;
       this.start();
-      this.bindEvent();
     },
     start: function() {
       $(this.$view)
@@ -32,18 +31,18 @@
         .removeClass("active")
         .addClass("active");
       let _this = this;
-      this.model.get(this.index).then(
+      this.model.get().then(
         function(ret) {
           console.log(ret);
           _this.setData(ret);
           _this.index += 20;
           _this.loading = false;
-          $(".loading>.icon").removeClass("active");
+          $(_this.$view).find(".loading>.icon").removeClass("active");
         },
         function() {
           console.log("error");
           _this.loading = false;
-          $(".loading>.icon").removeClass("active");
+          $(_this.$view).find(".loading>.icon").removeClass("active");
         }
       );
     },
@@ -54,7 +53,7 @@
       //生成模板
       data.subjects.forEach(movie => {
         let tpl = `
-      <div class="introduce">
+      <div class="introduce1">
         <span class="number-movie">1</span>
         <img src="" alt="" width="100" height="148">
         <span class="extra">
@@ -67,56 +66,42 @@
         </span>
       </div>
       `;
-      //填充数据
+        //填充数据
         let $node = $(tpl);
-        $node.find("img").attr("src", movie.images.medium);
-        $node.find("a").attr("href", movie.alt);
-        this.fillDataText($node, "a", movie.title);
+        $node.find("img").attr("src", movie.subject.images.medium);
+        $node.find("a").attr("href", movie.subject.alt);
+        this.fillDataText($node, "a", movie.subject.title);
         this.fillDataText($node, ".directors", () => {
           let dirArry = [];
-          movie.directors.forEach(dir => {
+          movie.subject.directors.forEach(dir => {
             dirArry.push(dir.name);
           });
           return "导演：" + dirArry.join("、");
         });
         this.fillDataText($node, ".casts", () => {
           let castArry = [];
-          movie.casts.forEach(cast => {
+          movie.subject.casts.forEach(cast => {
             castArry.push(cast.name);
           });
           return "演员：" + castArry.join("、");
         });
         this.fillDataText($node, ".number-movie", () => {
-          return `${$(".introduce").length + 1}`;
+          return `${$(".introduce1").length + 1}`;
+
         });
         this.fillDataText($node, ".others", () => {
           let genresArry = [];
-          movie.genres.forEach(genres => {
+          movie.subject.genres.forEach(genres => {
             genresArry.push(genres);
           });
-          return movie.year + " / " + genresArry.join(" / ");
+          return "2018 /" + genresArry.join(" / ");
         });
-        this.fillDataText($node, ".collect", movie.collect_count + "人收藏");
-        this.fillDataText($node, ".evaluate", "评分 " + movie.rating.average);
+        this.fillDataText($node, ".collect", movie.subject.collect_count + "人收藏");
+        this.fillDataText($node, ".evaluate", "评分 " + movie.subject.rating.average);
         //将模板插入页面中
         this.$view.find(".movie-wrapper")
           .eq(0)
           .append($node);
-      });
-    },
-    bindEvent: function() {
-      let _this = this;
-      //当滚动条到底端时发送请求
-      $(window).scroll(function() {
-        let scrollTop = $(this).scrollTop();
-        let scrollHeight = $(document).height();
-        let windowHeight = $(this).height();
-        if (scrollTop + windowHeight > scrollHeight - 10) {
-          if (_this.loading === false) {
-            _this.loading = true;
-            _this.start();
-          }
-        }
       });
     }
   };

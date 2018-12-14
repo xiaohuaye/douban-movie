@@ -58,24 +58,32 @@ footer .active {
   display: block;
   padding: 30px 0 0 10vw;
 }
-.pag-USMovie,.pag-seach {
+.pag-USMovie{
+  display: none;
+  padding: 30px 0 0 10vw;
+}
+.pag-seach {
   display: none;
 }
-.pag-rank>h1{
+.pag-rank>h1,.pag-USMovie>h1{
   font-size: 26px;
   color: #494949;
   padding-bottom: 30px;
 }
-.introduce {
+.introduce,.introduce1 {
   border-top: 1px dashed #DEE1E6;
   width: 50vw;
   display: flex;
   align-items: flex-start;
 }
-.introduce img {
+.introduce img,.introduce1 img {
   margin: 10px 10px ;
 }
 .introduce>.number-movie {
+  padding-top: 10px;
+  width: 1em;
+}
+.introduce1>.number-movie {
   padding-top: 10px;
   width: 1em;
 }
