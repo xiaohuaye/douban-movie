@@ -16,12 +16,10 @@
   let controller = {
     $view: null,
     model: null,
-    loading: null,
     index: null,
     init: function() {
       this.$view = $view;
       this.model = model;
-      this.loading = false;
       this.index = null;
       this.start();
     },
@@ -35,13 +33,10 @@
         function(ret) {
           console.log(ret);
           _this.setData(ret);
-          _this.index += 20;
-          _this.loading = false;
           $(_this.$view).find(".loading>.icon").removeClass("active");
         },
         function() {
           console.log("error");
-          _this.loading = false;
           $(_this.$view).find(".loading>.icon").removeClass("active");
         }
       );

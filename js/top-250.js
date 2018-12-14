@@ -67,7 +67,7 @@
         </span>
       </div>
       `;
-      //填充数据
+        //填充数据
         let $node = $(tpl);
         $node.find("img").attr("src", movie.images.medium);
         $node.find("a").attr("href", movie.alt);
@@ -99,7 +99,8 @@
         this.fillDataText($node, ".collect", movie.collect_count + "人收藏");
         this.fillDataText($node, ".evaluate", "评分 " + movie.rating.average);
         //将模板插入页面中
-        this.$view.find(".movie-wrapper")
+        this.$view
+          .find(".movie-wrapper")
           .eq(0)
           .append($node);
       });
@@ -112,9 +113,11 @@
         let scrollHeight = $(document).height();
         let windowHeight = $(this).height();
         if (scrollTop + windowHeight > scrollHeight - 10) {
-          if (_this.loading === false) {
-            _this.loading = true;
-            _this.start();
+          if ($(".pag-rank").css("display") !== "none") {
+            if (_this.loading === false) {
+              _this.loading = true;
+              _this.start();
+            }
           }
         }
       });
