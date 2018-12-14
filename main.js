@@ -6,24 +6,8 @@ $(".svg-wrapper").on("click", e => {
     .fadeIn();
 });
 var index = null;
-$.ajax({
-  url: "https://api.douban.com/v2/movie/top250",
-  type: "GET",
-  data: {
-    start: index,
-    count: 20
-  },
-  dataType: "jsonp"
-}).then(
-  function(ret) {
-    console.log(ret);
-    setData(ret);
-    index += 20;
-  },
-  function() {
-    console.log("error");
-  }
-);
+var loading = false
+start()
 
 function setData(data) {
   data.subjects.forEach(movie => {
@@ -73,33 +57,47 @@ function setData(data) {
     $node.find(".collect").text(movie.collect_count + "人收藏");
     $node.find(".evaluate").text("评分 " + movie.rating.average);
 
-    $("section")
+    $(".movie-wrapper")
       .eq(0)
       .append($node);
   });
 }
+
+
 $(window).scroll(function() {
   let scrollTop = $(this).scrollTop();
   let scrollHeight = $(document).height();
   let windowHeight = $(this).height();
   if (scrollTop + windowHeight > scrollHeight - 1) {
-    $.ajax({
-      url: "https://api.douban.com/v2/movie/top250",
-      type: "GET",
-      data: {
-        start: index,
-        count: 20
-      },
-      dataType: "jsonp"
-    }).then(
-      function(ret) {
-        console.log(ret);
-        setData(ret);
-        index += 20;
-      },
-      function() {
-        console.log("error");
-      }
-    );
+    if(loading === false){
+      loading = true
+      start()
+    }
   }
 });
+
+function start(){
+  $('.loading>.icon').removeClass('active').addClass('active')
+  $.ajax({
+    url: "https://api.douban.com/v2/movie/top250",
+    type: "GET",
+    data: {
+      start: index,
+      count: 20
+    },
+    dataType: "jsonp"
+  }).then(
+    function(ret) {
+      console.log(ret);
+      setData(ret);
+      index += 20;
+      loading = false
+      $('.loading>.icon').removeClass('active')
+    },
+    function() {
+      console.log("error");
+      loading = false
+      $('.loading>.icon').removeClass('active')
+    }
+  );
+}
