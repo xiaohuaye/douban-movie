@@ -23,10 +23,10 @@
       this.model = model;
       this.loading = false;
       this.index = null;
-      this.start();
+      this.findSource();
       this.bindEvent();
     },
-    start: function() {
+    findSource: function() {
       $(this.$view)
         .find(".loading>.icon")
         .removeClass("active")
@@ -116,7 +116,7 @@
           if ($(".pag-rank").css("display") !== "none") {
             if (_this.loading === false) {
               _this.loading = true;
-              _this.start();
+              _this.findSource();
             }
           }
         }

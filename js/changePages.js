@@ -10,6 +10,7 @@
       this.$view.on("click", e => {
         let index = this.$view.index(e.currentTarget);
         $("section").hide().eq(index).fadeIn();
+        $(window).scrollTop(0)
       });
     }
   }

@@ -64,14 +64,20 @@
         historyArry[this.num] = this.keyword;
         //判断是否关键字改变
         if (this.num === 0) {
-          this.findSource.call(controller);
+          if (this.loading === false) {
+            this.loading = true;
+            this.findSource();
+          }
         } else {
           this.$view
             .find(".movie-wrapper")
             .eq(0)
             .empty();
           this.index = 0;
-          this.findSource.call(controller);
+          if (this.loading === false) {
+            this.loading = true;
+            this.findSource();
+          }
         }
         this.num += 1;
       });
