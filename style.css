@@ -54,15 +54,11 @@ footer .active {
 .btn-rank{
   padding-left: 30px;
 }
-.pag-rank{
+.pag-rank,.pag-USMovie,.pag-seach{
   display: block;
   padding: 30px 0 0 10vw;
 }
-.pag-USMovie{
-  display: none;
-  padding: 30px 0 0 10vw;
-}
-.pag-seach {
+.pag-USMovie,.pag-seach {
   display: none;
 }
 .pag-rank>h1,.pag-USMovie>h1{
@@ -70,13 +66,13 @@ footer .active {
   color: #494949;
   padding-bottom: 30px;
 }
-.introduce,.introduce1 {
+.introduce,.introduce1,.introduce3 {
   border-top: 1px dashed #DEE1E6;
   width: 50vw;
   display: flex;
   align-items: flex-start;
 }
-.introduce img,.introduce1 img {
+.introduce img,.introduce1 img,.introduce3 img {
   margin: 10px 10px ;
 }
 .introduce>.number-movie {
@@ -84,6 +80,10 @@ footer .active {
   width: 1em;
 }
 .introduce1>.number-movie {
+  padding-top: 10px;
+  width: 1em;
+}
+.introduce3>.number-movie {
   padding-top: 10px;
   width: 1em;
 }
@@ -131,4 +131,44 @@ footer .active {
   100%{
     transform: rotate(360deg)
   }
+}
+.seach-wrapper {
+  margin-bottom: 30px;
+}
+.seach-wrapper1{
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  margin-left: 170px;
+}
+.seach-wrapper1>form{
+  border: 1px solid #F1F3F4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 30px;
+  margin-left: 20px;
+}
+.seach-wrapper1>form:hover{
+  box-shadow: 0px 0px 2px 1px rgba(200, 200, 200, 0.75);
+}
+.seach-wrapper1>form>input{
+  height: 25px;
+  margin: 10px 25px;
+  width: 300px;
+  outline: none;
+  border: none;
+  background-color: white;
+}
+@media(max-width:768px){
+  .seach-wrapper1>form>input{
+    width: 50vw;
+  }
+}
+.seach-wrapper1>form>.icon{
+  fill: black;
+  width: 2em;
+  height: 2em;
+  padding-right: 10px;
+  margin-right: 10px;
 }
