@@ -1,7 +1,7 @@
 !function() {
   let $view = $(".pag-seach");
   let model = {
-    get: function(keyword,index) {
+    get: function(keyword, index) {
       return $.ajax({
         url: "https://api.douban.com/v2/movie/search",
         type: "GET",
@@ -30,15 +30,86 @@
       this.num = 0;
       this.bindEvent();
     },
-    start: function() {
+    fillDataText: function($node, selector, datas) {
+      $node.find(selector).text(datas);
+    },
+    findSource: function() {
       $(this.$view)
         .find(".loading>.icon")
         .removeClass("active")
         .addClass("active");
-      this.search(this.index)
+      this.search(this.index);
     },
-    fillDataText: function($node, selector, datas) {
-      $node.find(selector).text(datas);
+    bindEvent: function() {
+      let _this = this;
+      //当滚动条到底端时发送请求
+      $(window).scroll(function() {
+        let scrollTop = $(this).scrollTop();
+        let scrollHeight = $(document).height();
+        let windowHeight = $(this).height();
+        if (scrollTop + windowHeight > scrollHeight - 10) {
+          //判断是否在当前页面触发事件
+          if ($(".pag-seach").css("display") !== "none") {
+            if (_this.loading === false) {
+              _this.loading = true;
+              _this.findSource();
+            }
+          }
+        }
+      });
+      $view.find("form").submit(e => {
+        e.preventDefault();
+        let historyArry = [];
+        this.keyword = $view.find("form>input").val();
+        historyArry[this.num] = this.keyword;
+        //判断是否关键字改变
+        if (this.num === 0) {
+          this.findSource.call(controller);
+        } else {
+          this.$view
+            .find(".movie-wrapper")
+            .eq(0)
+            .empty();
+          this.index = 0;
+          this.findSource.call(controller);
+        }
+        this.num += 1;
+      });
+      $view.find("form>.icon").click(e => {
+        e.preventDefault();
+        //判断是否关键字改变
+        let historyArry = [];
+        this.keyword = $view.find("form>input").val();
+        historyArry[this.num] = this.keyword;
+        if (this.num === 0) {
+          this.findSource.call(controller);
+        } else {
+          this.$view
+            .find(".movie-wrapper")
+            .eq(0)
+            .empty();
+          this.index = 0;
+          this.findSource.call(controller);
+        }
+        this.num += 1;
+      });
+    },
+    search: function() {
+      let _this = this;
+      this.model.get(this.keyword, this.index).then(
+        function(ret) {
+          console.log(ret);
+          _this.setData(ret);
+          _this.index += 20;
+          _this.loading = false;
+          $(".loading>.icon").removeClass("active");
+        },
+        function() {
+          console.log("error");
+          _this.loading = false;
+          $(".loading>.icon").removeClass("active");
+        }
+      );
     },
     setData: function(data) {
       //生成模板
@@ -94,79 +165,8 @@
           .eq(0)
           .append($node);
       });
-    },
-    bindEvent: function() {
-      let _this = this;
-      //当滚动条到底端时发送请求
-      $(window).scroll(function() {
-        let scrollTop = $(this).scrollTop();
-        let scrollHeight = $(document).height();
-        let windowHeight = $(this).height();
-        if (scrollTop + windowHeight > scrollHeight - 10) {
-          if ($(".pag-seach").css("display") !== "none") {
-            if (_this.loading === false) {
-              _this.loading = true;
-              _this.start();
-            }
-          }
-        }
-      });
-      $view.find("form").submit((e) => {
-        e.preventDefault()
-        let historyArry = []
-        this.keyword = $view.find("form>input").val();
-        historyArry[this.num] = this.keyword
-        console.log(this.num)
-        if(this.num === 0){
-          this.start.call(controller)
-        }else{
-          this.$view
-          .find(".movie-wrapper")
-          .eq(0)
-          .empty()
-          this.index = 0
-          console.log(controller.index)
-          this.start.call(controller)
-        }
-        this.num += 1
-      })
-      $view.find('form>.icon').click((e)=>{
-        e.preventDefault()
-        let historyArry = []
-        this.keyword = $view.find("form>input").val();
-        historyArry[this.num] = this.keyword
-        console.log(this.num)
-        if(this.num === 0){
-          this.start.call(controller)
-        }else{
-          this.$view
-          .find(".movie-wrapper")
-          .eq(0)
-          .empty()
-          this.index = 0
-          console.log(controller.index)
-          this.start.call(controller)
-        }
-        this.num += 1
-    })
-  },
-    search: function(){
-      let _this = this
-      this.model.get(this.keyword,this.index).then(
-        function(ret) {
-          console.log(ret);
-          _this.setData(ret);
-          _this.index += 20;
-          _this.loading = false;
-          $(".loading>.icon").removeClass("active");
-        },
-        function(){
-          console.log("error");
-          _this.loading = false;
-          $(".loading>.icon").removeClass("active");
-        }
-      )
     }
-  }
+  };
+
   controller.init.call(controller, $view, model);
 }.call();
