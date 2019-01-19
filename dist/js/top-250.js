@@ -56,7 +56,7 @@
         let tpl = `
       <div class="introduce">
         <span class="number-movie">1</span>
-        <img src="" alt="">
+        <img src="" alt="服务器你够了">
         <span class="extra">
           <a href=""></a>
           <p class='directors'></p>
@@ -109,21 +109,16 @@
       let _this = this;
       //当滚动条到底端时发送请求
       $('.pag-rank .movie-wrapper').scroll(function() {
-        let scrollTop = $(this).scrollTop();
-        let scrollHeight = $('.pag-rank .movie-wrapper').height();
-        let windowHeight = $(this).height();
-        console.log(scrollTop)
-        console.log(scrollHeight)
-        console.log(windowHeight)
-        console.log(this)
-        // if (scrollTop + windowHeight > scrollHeight - 10) {
-        //   if ($(".pag-rank").css("display") !== "none") {
-        //     if (_this.loading === false) {
-        //       _this.loading = true;
-        //       _this.findSource();
-        //     }
-        //   }
-        // }
+        let parentHeight = $('.pag-rank .movie-wrapper').height();
+        let lastChildHeight = $('.movie-wrapper>.introduce:last-child').offset().top
+        if (lastChildHeight < parentHeight) {
+          if ($(".pag-rank").css("display") !== "none") {
+            if (_this.loading === false) {
+              _this.loading = true;
+              _this.findSource();
+            }
+          }
+        }
       });
     }
   };

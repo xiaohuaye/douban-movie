@@ -48,7 +48,7 @@
       //生成模板
       data.subjects.forEach(movie => {
         let tpl = `
-      <div class="introduce">
+      <div class="introduce1">
         <span class="number-movie">1</span>
         <img src="" alt="" width="100" height="148">
         <span class="extra">
@@ -81,7 +81,7 @@
           return "演员：" + castArry.join("、");
         });
         this.fillDataText($node, ".number-movie", () => {
-          return `${$(".introduce").length + 1}`;
+          return `${$(".introduce1").length + 1}`;
 
         });
         this.fillDataText($node, ".others", () => {
