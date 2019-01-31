@@ -133,13 +133,12 @@ main {
     background: linear-gradient(45deg, rgba(16,17,61,1) 0%,rgba(14,14,14,1) 100%);
       .seach-wrapper1{
         div{
-          margin: 0 auto;
           width: px2rem(250px);
           padding: px2rem(10px);
           color: white;
-          font-size: px2rem(30px);
+          font-size: px2rem(20px);
         .logo{
-          font-size: px2rem(16px);
+          font-size: px2rem(12px);
           margin: px2rem(5px);
         }
           display: flex;
@@ -152,14 +151,13 @@ main {
           }
         }
         form{
-          margin: 0 auto;
-          width: px2rem(250px);
           display: flex;
           justify-content: center;
           align-items: center;
           outline: none;
           padding-bottom: px2rem(20px);
           input{
+            width: px2rem(200px);
             line-height: px2rem(20px);
             outline: none;
           }
@@ -169,44 +167,40 @@ main {
           }
         }
       }
-      .movie-wrapper{
-        border: 1px solid red;
-        position: absolute;
-        left: 0;
-        right: 0;
-        top: px2rem(50px);
-        overflow: auto;
-        height: 90vh;
-      .introduce3{
-        border-bottom: 1px dashed #DEE1E6;
-        padding-bottom: px2rem(5px);
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        .number-movie {
-          font-size: px2rem(20px);
-          font-weight: bold;
-          height: px2rem(30px);
-          width: px2rem(20px);
-        }
-        img{
-          padding: px2rem(5px);
-          width: px2rem(100px);
-          height: px2rem(148px);
-        }
-        .extra {
-          display: inline-block;
-          a,p{
-            padding-top: px2rem(10px);
-            width: px2rem(192px);
-            display: block;
-            overflow: hidden;
-            white-space: nowrap;
-            text-overflow:ellipsis;
-          }
+    }
+    .movie-wrapper{
+      border: 1px solid red;
+      height: 80vh;
+      overflow: auto;
+    .introduce3{
+      border-bottom: 1px dashed #DEE1E6;
+      padding-bottom: px2rem(5px);
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      .number-movie {
+        font-size: px2rem(20px);
+        font-weight: bold;
+        height: px2rem(30px);
+        width: px2rem(20px);
+      }
+      img{
+        padding: px2rem(5px);
+        width: px2rem(100px);
+        height: px2rem(148px);
+      }
+      .extra {
+        display: inline-block;
+        a,p{
+          padding-top: px2rem(10px);
+          width: px2rem(192px);
+          display: block;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow:ellipsis;
         }
       }
-      }
+    }
     }
   }
   

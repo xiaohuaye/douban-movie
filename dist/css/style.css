@@ -134,17 +134,16 @@ main .pag-seach .seach-wrapper {
   background: linear-gradient(45deg, #10113d 0%, #0e0e0e 100%);
 }
 main .pag-seach .seach-wrapper .seach-wrapper1 div {
-  margin: 0 auto;
   width: 0.6944444444rem;
   padding: 0.0277777778rem;
   color: white;
-  font-size: 0.0833333333rem;
+  font-size: 0.0555555556rem;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 main .pag-seach .seach-wrapper .seach-wrapper1 div .logo {
-  font-size: 0.0444444444rem;
+  font-size: 0.0333333333rem;
   margin: 0.0138888889rem;
 }
 main .pag-seach .seach-wrapper .seach-wrapper1 div span {
@@ -153,8 +152,6 @@ main .pag-seach .seach-wrapper .seach-wrapper1 div span {
   align-items: center;
 }
 main .pag-seach .seach-wrapper .seach-wrapper1 form {
-  margin: 0 auto;
-  width: 0.6944444444rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -162,6 +159,7 @@ main .pag-seach .seach-wrapper .seach-wrapper1 form {
   padding-bottom: 0.0555555556rem;
 }
 main .pag-seach .seach-wrapper .seach-wrapper1 form input {
+  width: 0.5555555556rem;
   line-height: 0.0555555556rem;
   outline: none;
 }
@@ -169,37 +167,33 @@ main .pag-seach .seach-wrapper .seach-wrapper1 form .logo1 {
   margin-left: 0.0277777778rem;
   font-size: 0.0277777778rem;
 }
-main .pag-seach .seach-wrapper .movie-wrapper {
+main .pag-seach .movie-wrapper {
   border: 1px solid red;
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0.1388888889rem;
+  height: 80vh;
   overflow: auto;
-  height: 90vh;
 }
-main .pag-seach .seach-wrapper .movie-wrapper .introduce3 {
+main .pag-seach .movie-wrapper .introduce3 {
   border-bottom: 1px dashed #DEE1E6;
   padding-bottom: 0.0138888889rem;
   display: flex;
   justify-content: space-around;
   align-items: center;
 }
-main .pag-seach .seach-wrapper .movie-wrapper .introduce3 .number-movie {
+main .pag-seach .movie-wrapper .introduce3 .number-movie {
   font-size: 0.0555555556rem;
   font-weight: bold;
   height: 0.0833333333rem;
   width: 0.0555555556rem;
 }
-main .pag-seach .seach-wrapper .movie-wrapper .introduce3 img {
+main .pag-seach .movie-wrapper .introduce3 img {
   padding: 0.0138888889rem;
   width: 0.2777777778rem;
   height: 0.4111111111rem;
 }
-main .pag-seach .seach-wrapper .movie-wrapper .introduce3 .extra {
+main .pag-seach .movie-wrapper .introduce3 .extra {
   display: inline-block;
 }
-main .pag-seach .seach-wrapper .movie-wrapper .introduce3 .extra a, main .pag-seach .seach-wrapper .movie-wrapper .introduce3 .extra p {
+main .pag-seach .movie-wrapper .introduce3 .extra a, main .pag-seach .movie-wrapper .introduce3 .extra p {
   padding-top: 0.0277777778rem;
   width: 0.5333333333rem;
   display: block;
