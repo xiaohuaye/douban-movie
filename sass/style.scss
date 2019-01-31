@@ -45,7 +45,7 @@ main {
     text-align: center;
   }
   .pag-rank,{
-    display: none;
+    display: block;
     height: 100vh;
     .movie-wrapper{
       position: absolute;
@@ -83,6 +83,16 @@ main {
           }
         }
       }
+    }
+    .loading{
+      position: absolute;
+      width: px2rem(360px);
+      bottom: 0;
+      height: 5vh;
+      z-index: 2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
   }
   .pag-USMovie{
@@ -127,7 +137,7 @@ main {
     }
   }
   .pag-seach {
-    display: block; 
+    display: none; 
     height: 100vh; 
     .seach-wrapper{
     background: linear-gradient(45deg, rgba(16,17,61,1) 0%,rgba(14,14,14,1) 100%);
@@ -169,7 +179,6 @@ main {
       }
     }
     .movie-wrapper{
-      border: 1px solid red;
       height: 80vh;
       overflow: auto;
     .introduce3{
@@ -206,7 +215,8 @@ main {
   
 }
 footer {
-  height: 10vh;
+  width: px2rem(360px);
+  color: white;
   position: fixed;
   bottom: 5vh;
   left: 0;
