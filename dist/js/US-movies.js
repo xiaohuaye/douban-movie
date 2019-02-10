@@ -31,12 +31,10 @@
       let _this = this;
       this.model.get().then(
         function(ret) {
-          console.log(ret);
           _this.setData(ret);
           $(_this.$view).find(".loading>.icon").removeClass("active");
         },
         function() {
-          console.log("error");
           $(_this.$view).find(".loading>.icon").removeClass("active");
         }
       );

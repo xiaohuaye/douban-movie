@@ -34,14 +34,12 @@
       let _this = this;
       this.model.get(this.index).then(
         function(ret) {
-          console.log(ret);
           _this.setData(ret);
           _this.index += 20;
           _this.loading = false;
           $(".loading>.icon").removeClass("active");
         },
         function(error) {
-          console.log(error);
           _this.loading = false;
           $(".loading>.icon").removeClass("active");
         }
