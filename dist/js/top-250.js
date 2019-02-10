@@ -54,7 +54,7 @@
         let tpl = `
       <div class="introduce">
         <span class="number-movie">1</span>
-        <img src="" alt="服务器你够了">
+        <img src="" alt="服务器你够了" width="100" height="148">
         <span class="extra">
           <a href=""></a>
           <p class='directors'></p>
@@ -110,6 +110,19 @@
         let parentHeight = $('.pag-rank .movie-wrapper').height();
         let lastChildHeight = $('.movie-wrapper>.introduce:last-child').offset().top
         if (lastChildHeight < parentHeight) {
+          if ($(".pag-rank").css("display") !== "none") {
+            if (_this.loading === false) {
+              _this.loading = true;
+              _this.findSource();
+            }
+          }
+        }
+      });
+      $(window).scroll(function() {
+        let scrollTop = $(this).scrollTop();
+        let scrollHeight = $(document).height();
+        let windowHeight = $(this).height();
+        if (scrollTop + windowHeight > scrollHeight - 10) {
           if ($(".pag-rank").css("display") !== "none") {
             if (_this.loading === false) {
               _this.loading = true;
